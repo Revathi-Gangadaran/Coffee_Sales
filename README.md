@@ -21,15 +21,14 @@ In the initial data preparation phase, we performed the following task:
 
 
 ### Exploratory Data Analysis:
+It is an approach to analyse the dataset to summarise their main characteristics by using visual methods. 
 
-EDA involved inexploring the sales data to answer the following questions:
+EDA involved in this project to explore the sales data to answer the following questions:
 1. What is the overall coffee sales trends?
 2. How many people holds Loyalty card based on country?
 3. Which coffee type are top sellers?
 4. Which country made high sales?
 
-
-### Data Analysis:
 
 ### Data Cleaning and preparation:
 
@@ -47,4 +46,5 @@ Sales_Amt = [Quantity]*[products.Unit Price]
 
 ```
  - The same process is done for calculating day and year using Order Date Column
+
 
