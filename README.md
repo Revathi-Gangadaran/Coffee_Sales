@@ -16,7 +16,8 @@ The primary dataset used for this analysis is the , containing informations abou
 - Power Query Editor
 	
 ## Dataset Description:
-The dataset is stored in coffee_shop.xlsx and includes the following sheets:
+The dataset is stored in coffeeOrdersData.xlsx and includes the following sheets:
+
 ### Sheet1: Products:
 - Product ID
 - Coffee Type
@@ -56,7 +57,7 @@ The dataset is stored in coffee_shop.xlsx and includes the following sheets:
 
 ## Data Cleaning & transformation:
 Data cleaning and transformation were performed using Power Query Editor. The steps included:
-1. Loading Data: Importing data from the coffee_shop.xlsx file.
+1. Loading Data: Importing data from the coffeeOrdersData.xlsx file.
 2. Handling Missing Values: Identifying and filling in or removing missing data.
 3. Correcting Data Types: Ensuring that numerical columns are set to the correct data type and dates are recognized correctly.
 4. Merging Data: Merging Orders, Products, and Customers sheets to create a comprehensive dataset for analysis.
