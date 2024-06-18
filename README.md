@@ -3,7 +3,7 @@
 ## Project Overview:
 This project contains the analysis of a coffee shop's sales data. The dataset includes orders, products, and customer information stored in a single Excel file. Data cleaning and transformation were performed using Power Query Editor, and visualizations were created using Pivot Tables and Pivot Charts in Excel.
 
-## Contents:
+## Contents: 
 - `coffeeOrdersData.xlsx`: The main Excel file containing three sheets with data.
 - `README.md`: Documentation file providing an overview of the project and analysis steps.
 - `data_cleaning_and_transformation.pq`: Power Query script for data cleaning and transformation.
