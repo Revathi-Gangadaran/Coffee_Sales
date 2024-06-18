@@ -3,7 +3,7 @@ let
     Source = Excel.Workbook(File.Contents("C:\Users\revat\Downloads\coffeeOrdersData.xlsx"), null, true),
 
     // Step 2: Access specific sheets and promote headers
-    customers_Sheet = Source{[Item="customers",Kind="Sheet"]}[Data],
+    customers_Sheet = Source{[Item="customers",Kind="Sheet"]}[Data], 
     #"Promoted Headers" = Table.PromoteHeaders(customers_Sheet, [PromoteAllScalars=true]),
    
 
