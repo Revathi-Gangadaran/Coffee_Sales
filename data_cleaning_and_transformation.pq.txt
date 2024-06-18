@@ -1,45 +1,73 @@
 let
     //Load the Customer dataset
     Source = Excel.Workbook(File.Contents("C:\Users\revat\Downloads\coffeeOrdersData.xlsx"), null, true),
+
+    // Step 2: Access specific sheets and promote headers
     customers_Sheet = Source{[Item="customers",Kind="Sheet"]}[Data],
     #"Promoted Headers" = Table.PromoteHeaders(customers_Sheet, [PromoteAllScalars=true]),
-    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Customer ID", type text}, {"Customer Name", type text}, {"Email", type text}, {"Phone Number", type text}, {"Address Line 1", type text}, {"City", type text}, {"Country", type text}, {"Postcode", type any}, {"Loyalty Card", type text}}),
-    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Address Line 1", "Postcode", "Phone Number"})
+   
 
-    //Load Products dataset
-    Source = Excel.Workbook(File.Contents("C:\Users\revat\Downloads\coffeeOrdersData.xlsx"), null, true),
+    
     products_Sheet = Source{[Item="products",Kind="Sheet"]}[Data],
     #"Promoted Headers" = Table.PromoteHeaders(products_Sheet, [PromoteAllScalars=true]),
-    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Product ID", type text}, {"Coffee Type", type text}, {"Roast Type", type text}, {"Size", type number}, {"Unit Price", type number}, {"Price per 100g", type number}, {"Profit", type number}})
+   
 
 
-    //Load Orders dataset
-    Source = Excel.Workbook(File.Contents("C:\Users\revat\Downloads\coffeeOrdersData.xlsx"), null, true),
     orders_Sheet = Source{[Item="orders",Kind="Sheet"]}[Data],
     #"Promoted Headers" = Table.PromoteHeaders(orders_Sheet, [PromoteAllScalars=true]),
-    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Order ID", type text}, {"Order Date", type date}, {"Customer ID", type text}, {"Product ID", type text}, {"Quantity", Int64.Type}, {"Customer Name", type any}, {"Email", type any}, {"Country", type any}, {"Coffee Type", type any}, {"Roast Type", type any}, {"Size", type any}, {"Unit Price", type any}, {"Sales", type any}}),
-    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Customer Name", "Email", "Country", "Coffee Type", "Roast Type", "Size", "Unit Price", "Sales"}),
     
+    // Step 3: Transform columns in each table
+     #"Transformed_Customers" = Table.TransformColumnTypes(#"Promoted Headers",{{"Customer ID", type text}, {"Customer Name", type text}, {"Email", type text}, {"Phone Number", type text}, {"Address Line 1", type text}, {"City", type text}, {"Country", type text}, {"Postcode", type any}, {"Loyalty Card", type text}}),
+
+
+     #"Transformed_Products" = Table.TransformColumnTypes(#"Promoted Headers",{{"Product ID", type text}, {"Coffee Type", type text}, {"Roast Type", type text}, {"Size", type number}, {"Unit Price", type number}, {"Price per 100g", type number}, {"Profit", type number}}),
+
+
+     #"Transformed_Orders" = Table.TransformColumnTypes(#"Promoted Headers",{{"Order ID", type text}, {"Order Date", type date}, {"Customer ID", type text}, {"Product ID", type text}, {"Quantity", Int64.Type}, {"Customer Name", type any}, {"Email", type any}, {"Country", type any}, {"Coffee Type", type any}, {"Roast Type", type any}, {"Size", type any}, {"Unit Price", type any}, {"Sales", type any}}),
+
+
+     // Step 4: Remove columns from Customer table
+      #"Removed_Columns_Customers" = Table.RemoveColumns(#"Changed Type",{"Address Line 1", "Postcode", "Phone Number"})
+      
+
+     // Step 5: Remove columns from Orders table
+      #"Removed_Columns_Orders" = Table.RemoveColumns(#"Changed Type",{"Customer Name", "Email", "Country", "Coffee Type", "Roast Type", "Size", "Unit Price", "Sales"}),
+    
+
+
+    // Step 6: Added Custom column in Orders table
+
     // Calculated Date Column for Month
-    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Month", each Date.MonthName([Order Date])),
+    #"Added_Custom_Orders" = Table.AddColumn(#"Removed Columns", "Month", each Date.MonthName([Order Date])),
 
     // Calculated Date Column for Year
-    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Year", each Date.Year([Order Date])),
+    #"Added_Custom1_Orders" = Table.AddColumn(#"Added Custom", "Year", each Date.Year([Order Date])),
 
     // Calculated Date Column for Day
-    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Day", each Date.DayOfWeekName([Order Date],"dd")),
-    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom2",{{"Day", type text}, {"Year", Int64.Type}, {"Month", type text}}),
+    #"Added_Custom2_Orders" = Table.AddColumn(#"Added Custom1", "Day", each Date.DayOfWeekName([Order Date],"dd")),
+
+
+    // Step 7: Merging Queries to combine the Products table into Orders table:
+
     #"Merged Queries" = Table.NestedJoin(#"Changed Type1", {"Product ID"}, products, {"Product ID"}, "products", JoinKind.Inner),
     #"Expanded products" = Table.ExpandTableColumn(#"Merged Queries", "products", {"Unit Price", "Price per 100g"}, {"products.Unit Price", "products.Price per 100g"}),
     #"Reordered Columns" = Table.ReorderColumns(#"Expanded products",{"Order ID", "Order Date", "Customer ID", "Product ID", "products.Unit Price", "products.Price per 100g", "Quantity", "Month", "Year", "Day"}),
+
+    // Step 8: Change type of multiple columns in Orders table
+    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom2",{{"Day", type text}, {"Year", Int64.Type}, {"Month", type text}}),
     #"Changed Type2" = Table.TransformColumnTypes(#"Reordered Columns",{{"products.Unit Price", Currency.Type}, {"products.Price per 100g", Currency.Type}}),
 
+
+    // Step 9: Added Custom Column in Orders table
     // Calculated Sales Amount
     #"Added Custom3" = Table.AddColumn(#"Changed Type2", "Sales_Amt", each [Quantity]*[products.Unit Price]),
     #"Changed Type3" = Table.TransformColumnTypes(#"Added Custom3",{{"Sales_Amt", type number}})
+
+   // Step 10: Combine tables into output query
+    Output = [
+        Products = Transformed_Products,
+        Customers = Removed_Columns_Customers,
+	Orders = Changed Type3
+    ]
 in
-    #"Removed Columns"
-in
-    #"Changed Type"
-in
-    #"Changed Type3"
+    Output
