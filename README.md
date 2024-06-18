@@ -93,5 +93,5 @@ To replicate the analysis:
 
 
 ### Contact:
-For any questions or inquiries, please contact Revathi Gangadaran at [revathigangadaran@gmail.com].
+For any questions or inquiries, please contact [revathigangadaran@gmail.com].
 
