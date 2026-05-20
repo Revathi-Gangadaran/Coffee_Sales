@@ -1,7 +1,7 @@
-# Coffee Shop Sales Data Analysis
+# Sales Data Analysis
 
 ## Project Overview:
-This project contains the analysis of a coffee shop's sales data. The dataset includes orders, products, and customer information stored in a single Excel file. Data cleaning and transformation were performed using Power Query Editor, and visualizations were created using Pivot Tables and Pivot Charts in Excel.
+This project contains the analysis of a sales data. The dataset includes orders, products, and customer information stored in a single Excel file. Data cleaning and transformation were performed using Power Query Editor, and visualizations were created using Pivot Tables and Pivot Charts in Excel.
 
 ## Contents: 
 - `coffeeOrdersData.xlsx`: The main Excel file containing three sheets with data.
