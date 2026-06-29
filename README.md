@@ -102,9 +102,17 @@ Analysed geographic performance to highlight strong markets.
 
 Visual insights were created using Pivot Tables and Pivot Charts:
 - Sales Trend Line Chart
-- Coffee Type Performance Chart
+
+   <img width="460" height="240" alt="image" src="https://github.com/user-attachments/assets/ca40a09d-7c7e-4862-82c8-c87a583ca257" />
+
 - Country‑wise Sales Distribution Bar Chart
+
+     <img width="475" height="238" alt="image" src="https://github.com/user-attachments/assets/50c40afe-2f38-4f75-808d-6aee3794966e" />
+
 - Loyalty Card Adoption Chart
+
+     <img width="455" height="252" alt="image" src="https://github.com/user-attachments/assets/f9d4b804-244c-4122-b855-cfd0f4fa8d23" />
+
 
 All visualizations are available in visualizations.xlsx.
 
