@@ -1,24 +1,25 @@
-# Sales Data Analysis
+# 📊 Sales Data Analysis
+A complete workflow for cleaning, transforming, and analyzing retail coffee sales data using Excel and Power Query.
 
-## Project Overview:
-This project contains the analysis of a sales data. The dataset includes orders, products, and customer information stored in a single Excel file. Data cleaning and transformation were performed using Power Query Editor, and visualizations were created using Pivot Tables and Pivot Charts in Excel.
+## 🔍 Project Overview:
+This project provides an end‑to‑end analysis of a multi‑sheet coffee sales dataset. It covers data preparation, merging, calculated fields, exploratory data analysis (EDA), and visualization. The goal is to transform raw operational data into meaningful insights using accessible tools.
+The workflow includes:
+- Cleaning and standardizing raw data
+- Building a unified analytical dataset
+- Exploring sales trends, product performance, and customer behaviour
+- Visualizing insights using Pivot Tables and Pivot Charts
 
-## Contents: 
-- `coffeeOrdersData.xlsx`: The main Excel file containing three sheets with data.
-- `README.md`: Documentation file providing an overview of the project and analysis steps.
-- `data_cleaning_and_transformation.pq`: Power Query script for data cleaning and transformation.
-- `visualizations.xlsx`: Excel file with Pivot Tables and Pivot Charts for visualization.
+## 📁 Repository Contents: 
+- `coffeeOrdersData.xlsx`: Raw dataset containing Products, Customers, and Orders.
+- `data_cleaning_and_transformation.pq`: Power Query script used for data preparation.
+- `visualizations.xlsx`: Pivot Tables and Pivot Charts.
+- `README.md`: Documentation and methodology.
 
-The primary dataset used for this analysis is the , containing informations about a coffee sale in three different countries.
 
-## Tools: 
-- Excel
-- Power Query Editor
-	
-## Dataset Description:
-The dataset is stored in coffeeOrdersData.xlsx and includes the following sheets:
+## 📦 Dataset Description:
+The dataset (coffeeOrdersData.xlsx) contains three sheets:
 
-### Sheet1: Products:
+### Products:
 - Product ID
 - Coffee Type
 - Roast Type
@@ -27,7 +28,7 @@ The dataset is stored in coffeeOrdersData.xlsx and includes the following sheets
 - Price per 100g
 - Profit
 
-### Sheet2: customers:
+### Customers:
 - Customer ID
 - Customer Name
 - Email
@@ -38,7 +39,7 @@ The dataset is stored in coffeeOrdersData.xlsx and includes the following sheets
 - Postcode
 - Loyalty Card
 
-### Sheet3: orders:
+### Orders:
 - Order ID
 - Order Date
 - Customer ID
@@ -53,44 +54,67 @@ The dataset is stored in coffeeOrdersData.xlsx and includes the following sheets
 - Unit Price
 - Price per 100g
 - Profit
-  
 
-## Data Cleaning & transformation:
-Data cleaning and transformation were performed using Power Query Editor. The steps included:
-1. Loading Data: Importing data from the coffeeOrdersData.xlsx file.
-2. Handling Missing Values: Identifying and filling in or removing missing data.
-3. Correcting Data Types: Ensuring that numerical columns are set to the correct data type and dates are recognized correctly.
-4. Merging Data: Merging Orders, Products, and Customers sheets to create a comprehensive dataset for analysis.
-5. Creating Calculated Columns: Adding columns such as Sales_Amount, Month, Year and Day from Date column to facilitate analysis.
+## 🛠️ Tools: 
+- Excel
+- Power Query Editor
+- Pivot Tables & Pivot Charts
+
+## 🧹 Data Cleaning & transformation:
+Data preparation was performed using Power Query Editor, following a structured sequence:
+### Loading Data 
+Imported all sheets from coffeeOrdersData.xlsx
+### Handling Missing Values: 
+- Identified nulls across customer and product fields
+- Replaced or removed missing values where appropriate
+### Data Type Correction:
+- Converted numeric fields to proper types
+- Ensured date fields were recognized correctly
+### Merging Tables: 
+Created a unified dataset by merging:
+- Orders with Customers
+- Orders with Products
+This produced a single fact table containing all relevant attributes.
+### Calculated Columns:
+Added fields to support deeper analysis:
+- Sales_Amount (Quantity × Unit Price)
+- Month, Year, Day extracted from Order Date
+
+The full transformation logic is stored in data_cleaning_and_transformation.pq.
    
-The Power Query script used for these steps is saved as data_cleaning_and_transformation.pq.
+## 📈 Exploratory Data Analysis:
+Key analytical questions explored:
 
-## Exploratory Data Analysis:
-It is an approach to analyse the dataset to summarise their main characteristics by using visual methods. 
+### What are the overall coffee sales trends?
+Examined monthly and yearly patterns to identify seasonality and growth.
 
-EDA involved in this project to explore the sales data to answer the following questions:
-1. What is the overall coffee sales trends?
-2. How many people holds Loyalty card based on country?
-3. Which coffee type are top sellers?
-4. Which country made high sales?
+### How many customers hold loyalty cards by country?
+Segmented customer base to understand loyalty distribution.
 
+### Which coffee types are top sellers?
+Compared product categories to identify high‑performing items.
 
-## Data Visualization:
-
-Visualizations were created using Pivot Tables and Pivot Charts in Excel to explore and analyze the cleaned data. Key visualizations include:
-1. Sales trend analysis: A Line chart with markers displays the sales trends over time.
-2. Product Performance: A stacked line chart comparing sales of different types of coffee.
-3. Customer Location Analysis: Clustered bar chart visualizes sales distribution by customer location based on their coffee type.
-4. Customer Loyalty: A clustered bar char displays the total customers that holds loyalty cards in different country.
-
-The visualizations are saved in the visualizations.xlsx file.
+### Which country generates the highest sales?
+Analysed geographic performance to highlight strong markets.
 
 
-## How to use: 
-To replicate the analysis:
-1. Open the coffee_shop.xlsx file in Excel.
-2. Use Power Query Editor to load and transform the data according to the steps outlined in data_cleaning_and_transformation.pq.
-3. Create Pivot Tables and Pivot Charts based on the transformed data to visualize and analyze sales trends.
+## 📊 Data Visualization:
+
+Visual insights were created using Pivot Tables and Pivot Charts:
+- Sales Trend Line Chart
+- Coffee Type Performance Chart
+- Country‑wise Sales Distribution Bar Chart
+- Loyalty Card Adoption Chart
+
+All visualizations are available in visualizations.xlsx.
+
+## ▶️ How to use this project: 
+To replicate or extend the analysis:
+
+1. Open coffeeOrdersData.xlsx in Excel
+2. Load and apply transformations using Power Query Editor
+3. Build Pivot Tables and Pivot Charts from the transformed dataset
+4. Explore or modify the analysis based on new questions or hypotheses
 
 
 ### Contact:
